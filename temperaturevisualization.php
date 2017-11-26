@@ -37,14 +37,14 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
 
     <h3>Temperature Visualization</h3>
     <br>
-    <p>Select a starting date:</p>
+    <p>Select a location:</p>
 
-    <!-- Select Starting Date -->
-    <form action="temperaturevisualizationdisplay.php" method="post">
-      <div class="form-group" id="startdateselect">
-        <select class="form-control" style="max-width:15%;" name="startdate">
+    <!-- Select Location -->
+    <form action="temperaturevisualizationdate.php" method="post">
+      <div class="form-group" id="locationselect">
+        <select class="form-control" style="max-width:15%;" name="locationname">
           <?php
-            $sql = "SELECT DISTINCT Date FROM Temperature WHERE UserName = ? ORDER BY Date ASC";
+            $sql = "SELECT DISTINCT LocationName FROM Temperature WHERE UserName = ?";
             $stmt = $mysqli->prepare($sql);
             $stmt->bind_param("s", $param_username);
             $param_username = $_SESSION['username'];
@@ -54,46 +54,12 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
 
               if($stmt->num_rows > 0)
               {
-                $stmt->bind_result($startdate);
+                $stmt->bind_result($locationname);
                 $dataexists = 1;
 
                 while ($stmt->fetch())
                 {
-                  echo "<option value='".$startdate."'>$startdate</option>";
-                }
-              }
-              else
-              {
-                $dataexists = 0;
-              }
-            }
-
-            $stmt->close();
-          ?>
-        </select>
-      </div>
-
-      <p>Select an ending date:</p>
-
-      <div class="form-group" id="enddateselect">
-        <select class="form-control" style="max-width:15%;" name="enddate">
-          <?php
-            $sql = "SELECT DISTINCT Date FROM Temperature WHERE UserName = ? ORDER BY Date DESC";
-            $stmt = $mysqli->prepare($sql);
-            $stmt->bind_param("s", $param_username);
-            $param_username = $_SESSION['username'];
-            if($stmt->execute())
-            {
-              $stmt->store_result();
-
-              if($stmt->num_rows > 0)
-              {
-                $stmt->bind_result($enddate);
-                $dataexists = 1;
-
-                while ($stmt->fetch())
-                {
-                  echo "<option value='".$enddate."'>$enddate</option>";
+                  echo "<option value='".$locationname."'>$locationname</option>";
                 }
               }
               else
@@ -108,7 +74,7 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
         </select>
       </div>
 
-      <!-- Display Submit button if current user has WD data, otherwise show warning -->
+      <!-- Display Submit button if current user has data, otherwise show warning -->
       <?php
         if ($dataexists == 1)
         {
