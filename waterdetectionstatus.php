@@ -37,7 +37,7 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
 
     <h3>Water Detection Status</h3>
     <br>
-    <p>Select Location:</p>
+    <p>Select a Location:</p>
 
     <!-- Select Location -->
     <form action="waterdetectionstatusresults.php" method="post">
@@ -82,7 +82,8 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
         }
         else
         {
-          echo "<strong><p class='bg-danger' style='max-width:15%;'>You have no Water Detection Status data!</p></strong>";
+          echo "<strong><p class='bg-danger' style='max-width:15%;'>You have no Water Detection Sensor data!</p></strong>";
+          echo "<i>Please record Water Detection Sensor data using the HTW Monitor Application to view current status.</i><br><br>";
         }
       ?>
     </form>

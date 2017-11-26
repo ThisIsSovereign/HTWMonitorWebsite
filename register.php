@@ -121,6 +121,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 </head>
 <center>
 <body>
+  <!-- User Menu -->
+  <p class="text-right">
+    <strong>Not Logged In</strong>
+    <a href="login.php" class="btn btn-default btn-sm">Login</a>
+  </p>
 
   <p class="h1">HTW Monitor</p>
 

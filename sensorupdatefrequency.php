@@ -30,7 +30,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
     else
     {
       $updatefrequency = trim($_POST["updatefrequency"]);
-      $updatefrequency_suc = '<strong>Success!</strong> Sensor Update Frequency set.';
+      $updatefrequency_suc = '<strong>Success!</strong> Sensor Update Frequency set to '.$updatefrequency.' seconds.';
     }
 
     $sql = "UPDATE Users SET UpdateFrequency = (?) WHERE UserName = (?)";

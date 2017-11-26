@@ -35,11 +35,11 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
 
     <h3>Water Detection Status</h3>
     <br>
-    <p class="h5">
+    <p><strong>
       <?php
         echo $_POST["locationname"];
       ?>
-    </p>
+    </strong></p>
 
     <!-- Get water detection status of currently selected location and display -->
     <?php
