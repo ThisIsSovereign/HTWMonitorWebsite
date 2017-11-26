@@ -21,7 +21,7 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
     <title>Temperature Visualization</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/cyborg/bootstrap.min.css">
     <style type="text/css">
-        body{ font: 14px sans-serif; text-align: center; }
+        body{ font: 14px sans-serif; text-align: center; background-color: #000000;}
     </style>
 </head>
 <center>

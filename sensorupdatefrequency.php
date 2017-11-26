@@ -60,7 +60,7 @@ $mysqli->close();
     <title>Sensor Update Frequency</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/cyborg/bootstrap.min.css">
     <style type="text/css">
-        body{ font: 14px sans-serif; }
+        body{ font: 14px sans-serif; text-align: center; background-color: #000000;}
         helpBlock2{ color: #5cb85c; }
     </style>
 </head>
@@ -77,7 +77,7 @@ $mysqli->close();
 
     <h3>Sensor Update Frequency</h3>
     <br>
-    <p>Enter a new Update Frequency (in seconds):</p>
+    <p>Enter a new Sensor Update Frequency (<i>in seconds</i>):</p>
 
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
         <div class="form-group <?php echo (!empty($updatefrequency_err)) ? 'has-error' : ''; ?>">

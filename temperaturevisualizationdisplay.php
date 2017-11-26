@@ -23,9 +23,29 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
     <meta charset="UTF-8">
     <title>Temperature Visualization</title>
     <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/js/highcharts.js"></script>
+    <script src="https://code.highcharts.com/js/modules/exporting.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/cyborg/bootstrap.min.css">
     <style type="text/css">
-        body{ font: 14px sans-serif; text-align: center; }
+        body{ font: 14px sans-serif; text-align: center; background-color: #000000;}
+    </style>
+
+    <!-- HighCharts Style -->
+    <style>
+      @import 'https://code.highcharts.com/css/highcharts.css';
+
+      .highcharts-background
+      {
+        fill: #000000;
+      }
+      .highcharts-title
+      {
+        color: #ffffff;
+      }
+      .highcharts-subtitle
+      {
+        fill: #000000;
+      }
     </style>
 </head>
 <center>
@@ -92,6 +112,9 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
       // echo "<br>";
     ?>
 
+
+
+    <!-- HighCharts Container -->
     <div id="container">
     </div>
 
@@ -117,13 +140,20 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
 
       var enddate = <?php echo json_encode($param_enddate) ?>;
 
-      var subtitle = (locationname + ' from ' + startdate + ' to ' + enddate);
+      if (startdate == enddate)
+      {
+        var subtitle = (locationname + ' on ' + startdate);
+      }
+      else
+      {
+        var subtitle = (locationname + ' from ' + startdate + ' to ' + enddate);
+      }
 
       // Setup HighCharts Chart
       var chart = Highcharts.chart('container',
         {
           title: {
-              text: 'Temperature'
+              text: 'Temperature °F'
           },
           subtitle: {
               text: subtitle
@@ -135,7 +165,7 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
           },
           yAxis: {
               title: {
-                  text: 'Temperature'
+                  text: 'Temperature °F'
               }
           },
           legend: {
@@ -151,7 +181,7 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
           series:
           [
             {
-              name: 'Temperature',
+              name: 'Temperature °F',
               data: temperatures
             }
           ]
