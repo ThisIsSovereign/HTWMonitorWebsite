@@ -1,10 +1,8 @@
 <?php
 require_once 'config.php';
 
-$temperatures = array();
-//$temperatures['name'] = 'Temperature';
+$humidiyvalues = array();
 $dates = array();
-//$dates['name'] = 'Date';
 
 // Initialize the session
 session_start();
@@ -21,7 +19,7 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Temperature Visualization</title>
+    <title>Humidity Visualization</title>
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/js/highcharts.js"></script>
     <script src="https://code.highcharts.com/js/modules/exporting.js"></script>
@@ -51,11 +49,11 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
 
     <p class="h1">HTW Monitor</p>
 
-    <h3>Temperature Visualization</h3>
+    <h3>Humidity Visualization</h3>
 
-    <!-- Get Temperature Data for user selected date range -->
+    <!-- Get Humidity Data for user selected date range -->
     <?php
-      $sql = "SELECT Temperature, Date, Time FROM Temperature WHERE UserName = ? AND LocationName = ? AND Date BETWEEN ? AND ? ORDER BY Date ASC, Time ASC";
+      $sql = "SELECT RelativeHumidity, Date, Time FROM RelativeHumidity WHERE UserName = ? AND LocationName = ? AND Date BETWEEN ? AND ? ORDER BY Date ASC, Time ASC";
       $stmt = $mysqli->prepare($sql);
       $stmt->bind_param("ssss", $param_username, $param_locationname, $param_startdate, $param_enddate);
       $param_username = $_SESSION['username'];
@@ -63,11 +61,11 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
       $param_startdate = $_POST["startdate"];
       $param_enddate = $_POST["enddate"];
       $stmt->execute();
-      $stmt->bind_result($temperature, $date, $time);
+      $stmt->bind_result($humidity, $date, $time);
 
       while ($stmt->fetch())
       {
-        $temperatures[] = $temperature;
+        $humidityvalues[] = $humidity;
         if ($param_startdate == $param_enddate)
         {
           $dates[] = $time;
@@ -87,17 +85,17 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
     </div>
 
     <!-- Pass Selected Location to Previous Page -->
-    <form action="temperaturevisualizationdate.php" method="post">
+    <form action="humidityvisualizationdate.php" method="post">
       <input type="hidden" name="locationname" value=<?php echo $param_locationname ?> />
       <br>
       <input type='submit' class='btn btn-default btn-sm' value='Change Date Range'>
     </form>
 
     <br>
-    <a class="btn btn-default btn-sm" href="temperaturevisualization.php" style='width:6.9%' role="button">Change Location</a>
+    <a class="btn btn-default btn-sm" href="humidityvisualization.php" style='width:6.9%' role="button">Change Location</a>
 
     <script type="text/javascript">
-      var temperatures = <?php echo json_encode($temperatures) ?>;
+      var humidityvalues = <?php echo json_encode($humidityvalues) ?>;
       var dates = <?php echo json_encode($dates) ?>;
       var locationname = <?php echo json_encode($param_locationname) ?>;
       var startdate = <?php echo json_encode($param_startdate) ?>;
@@ -116,7 +114,7 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
       var chart = Highcharts.chart('container',
         {
           title: {
-              text: 'Temperature °F'
+              text: 'Relative Humidity %'
           },
           subtitle: {
               text: subtitle
@@ -128,7 +126,7 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
           },
           yAxis: {
               title: {
-                  text: 'Temperature °F'
+                  text: 'Relative Humidity %'
               }
           },
           legend: {
@@ -144,8 +142,8 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
           series:
           [
             {
-              name: 'Temperature °F',
-              data: temperatures
+              name: 'Relative Humidity %',
+              data: humidityvalues
             }
           ]
         }

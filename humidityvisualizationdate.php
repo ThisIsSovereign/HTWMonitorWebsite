@@ -18,7 +18,7 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Temperature Visualization</title>
+    <title>Humidity Visualization</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/cyborg/bootstrap.min.css">
     <style type="text/css">
         body{ font: 14px sans-serif; text-align: center; background-color: #000000;}
@@ -35,19 +35,19 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
 
     <p class="h1">HTW Monitor</p>
 
-    <h3>Temperature Visualization</h3>
+    <h3>Humidity Visualization</h3>
     <br>
     <p>Selected Location: <strong><?php echo $_POST["locationname"];?></strong></p>
     <p>Select a starting date:</p>
 
     <!-- Select Location -->
-    <form action="temperaturevisualizationdisplay.php" method="post">
+    <form action="humidityvisualizationdisplay.php" method="post">
 
       <!-- Select Starting Date -->
       <div class="form-group" id="startdateselect">
         <select class="form-control" style="max-width:15%;" name="startdate">
           <?php
-            $sql = "SELECT DISTINCT Date FROM Temperature WHERE UserName = ? AND LocationName = ? ORDER BY Date ASC";
+            $sql = "SELECT DISTINCT Date FROM RelativeHumidity WHERE UserName = ? AND LocationName = ? ORDER BY Date ASC";
             $stmt = $mysqli->prepare($sql);
             $stmt->bind_param("ss", $param_username, $param_locationname);
             $param_username = $_SESSION['username'];
@@ -83,7 +83,7 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
       <div class="form-group" id="enddateselect">
         <select class="form-control" style="max-width:15%;" name="enddate">
           <?php
-            $sql = "SELECT DISTINCT Date FROM Temperature WHERE UserName = ? AND LocationName = ? ORDER BY Date DESC";
+            $sql = "SELECT DISTINCT Date FROM RelativeHumidity WHERE UserName = ? AND LocationName = ? ORDER BY Date DESC";
             $stmt = $mysqli->prepare($sql);
             $stmt->bind_param("ss", $param_username, $param_locationname);
             $param_username = $_SESSION['username'];
@@ -125,14 +125,14 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
         }
         else
         {
-          echo "<strong><p class='bg-danger' style='max-width:15%;'>You have no Temperature Sensor data!</p></strong>";
-          echo "<i>Please record Temperature Sensor data using the HTW Monitor Application to visualize your data.</i><br><br>";
+          echo "<strong><p class='bg-danger' style='max-width:15%;'>You have no Humidity Sensor data!</p></strong>";
+          echo "<i>Please record Humidity Sensor data using the HTW Monitor Application to visualize your data.</i><br><br>";
         }
       ?>
     </form>
 
     <br>
-    <a class="btn btn-default btn-sm" href="temperaturevisualization.php" role="button">Change Location</a>
+    <a class="btn btn-default btn-sm" href="humidityvisualization.php" role="button">Change Location</a>
 
   </body>
 </center>
