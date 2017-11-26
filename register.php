@@ -14,19 +14,17 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Validate username
     if(empty(trim($_POST["username"]))){
         $username_err = "Please enter a username.";
-    } else{
-        // Prepare a select statement
+    }
+    else
+    {
         $sql = "SELECT UserName FROM Users WHERE UserName = ?";
 
         if($stmt = $mysqli->prepare($sql))
         {
-            // Bind variables to the prepared statement as parameters
             $stmt->bind_param("s", $param_username);
 
-            // Set parameters
             $param_username = trim($_POST["username"]);
 
-            // Attempt to execute the prepared statement
             if($stmt->execute())
             {
                 // store result

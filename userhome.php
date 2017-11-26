@@ -36,6 +36,9 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
       <br>
       <br>
       <a class="btn btn-default btn-sm" href="sensorupdatefrequency.php" role="button">Sensor Update Frequency</a>
+      <br>
+      <br>
+      <a class="btn btn-default btn-sm" href="temperaturevisualization.php" role="button">Temperature Visualization</a>
   </body>
 </center>
 </html>

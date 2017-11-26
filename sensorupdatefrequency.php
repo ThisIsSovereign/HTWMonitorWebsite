@@ -57,7 +57,7 @@ $mysqli->close();
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Water Detection Status</title>
+    <title>Sensor Update Frequency</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/cyborg/bootstrap.min.css">
     <style type="text/css">
         body{ font: 14px sans-serif; }
