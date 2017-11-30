@@ -94,7 +94,7 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
     </form>
 
     <br>
-    <a class="btn btn-default btn-sm" href="temperaturevisualization.php" style='width:6.9%' role="button">Change Location</a>
+    <a class="btn btn-default btn-sm" href="temperaturevisualization.php" role="button">Change Location</a>
 
     <script type="text/javascript">
       var temperatures = <?php echo json_encode($temperatures) ?>;

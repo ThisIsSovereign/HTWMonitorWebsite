@@ -121,7 +121,7 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
       <?php
         if ($dataexists == 1)
         {
-          echo "<input type='submit' class='btn btn-default btn-sm' style='width:5.8%' value='Submit'>";
+          echo "<input type='submit' class='btn btn-default btn-sm' value='Submit'>";
         }
         else
         {

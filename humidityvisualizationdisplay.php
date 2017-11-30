@@ -92,7 +92,7 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
     </form>
 
     <br>
-    <a class="btn btn-default btn-sm" href="humidityvisualization.php" style='width:6.9%' role="button">Change Location</a>
+    <a class="btn btn-default btn-sm" href="humidityvisualization.php" role="button">Change Location</a>
 
     <script type="text/javascript">
       var humidityvalues = <?php echo json_encode($humidityvalues) ?>;

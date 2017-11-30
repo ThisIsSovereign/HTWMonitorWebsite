@@ -33,16 +33,16 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
       <h4>Navigation</h4>
       <br>
 
-      <a class="btn btn-default btn-sm" href="humidityvisualization.php" style='width:15%' role="button">Humidity Visualization</a>
+      <a class="btn btn-default btn-sm" href="humidityvisualization.php" role="button">Humidity Visualization</a>
       <br>
       <br>
-      <a class="btn btn-default btn-sm" href="temperaturevisualization.php" style='width:15%' role="button">Temperature Visualization</a>
+      <a class="btn btn-default btn-sm" href="temperaturevisualization.php" role="button">Temperature Visualization</a>
       <br>
       <br>
-      <a class="btn btn-default btn-sm" href="waterdetectionstatus.php" style='width:15%' role="button">Water Detection Status</a>
+      <a class="btn btn-default btn-sm" href="waterdetectionstatus.php" role="button">Water Detection Status</a>
       <br>
       <br>
-      <a class="btn btn-default btn-sm" href="sensorupdatefrequency.php" style='width:15%' role="button">Sensor Update Frequency</a>
+      <a class="btn btn-default btn-sm" href="sensorupdatefrequency.php" role="button">Sensor Update Frequency</a>
 
   </body>
 </center>
